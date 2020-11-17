@@ -8,6 +8,7 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
+import { PublicationBriefDto } from '../models/publication-brief-dto';
 import { PublisherDto } from '../models/publisher-dto';
 
 @Injectable({
@@ -22,25 +23,23 @@ export class PublishersService extends BaseService {
   }
 
   /**
-   * Path part for operation publishersPublicationIdGet
+   * Path part for operation publishersGet
    */
-  static readonly PublishersPublicationIdGetPath = '/Publishers/{publicationId}';
+  static readonly PublishersGetPath = '/Publishers';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `publishersPublicationIdGet$Plain()` instead.
+   * To access only the response body, use `publishersGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  publishersPublicationIdGet$Plain$Response(params: {
-    publicationId: number;
+  publishersGet$Plain$Response(params?: {
 
-  }): Observable<StrictHttpResponse<PublisherDto>> {
+  }): Observable<StrictHttpResponse<Array<PublicationBriefDto>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, PublishersService.PublishersPublicationIdGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, PublishersService.PublishersGetPath, 'get');
     if (params) {
 
-      rb.path('publicationId', params.publicationId, {});
 
     }
     return this.http.request(rb.build({
@@ -49,42 +48,39 @@ export class PublishersService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<PublisherDto>;
+        return r as StrictHttpResponse<Array<PublicationBriefDto>>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `publishersPublicationIdGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `publishersGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  publishersPublicationIdGet$Plain(params: {
-    publicationId: number;
+  publishersGet$Plain(params?: {
 
-  }): Observable<PublisherDto> {
+  }): Observable<Array<PublicationBriefDto>> {
 
-    return this.publishersPublicationIdGet$Plain$Response(params).pipe(
-      map((r: StrictHttpResponse<PublisherDto>) => r.body as PublisherDto)
+    return this.publishersGet$Plain$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<PublicationBriefDto>>) => r.body as Array<PublicationBriefDto>)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `publishersPublicationIdGet$Json()` instead.
+   * To access only the response body, use `publishersGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  publishersPublicationIdGet$Json$Response(params: {
-    publicationId: number;
+  publishersGet$Json$Response(params?: {
 
-  }): Observable<StrictHttpResponse<PublisherDto>> {
+  }): Observable<StrictHttpResponse<Array<PublicationBriefDto>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, PublishersService.PublishersPublicationIdGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, PublishersService.PublishersGetPath, 'get');
     if (params) {
 
-      rb.path('publicationId', params.publicationId, {});
 
     }
     return this.http.request(rb.build({
@@ -93,24 +89,23 @@ export class PublishersService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<PublisherDto>;
+        return r as StrictHttpResponse<Array<PublicationBriefDto>>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `publishersPublicationIdGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `publishersGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  publishersPublicationIdGet$Json(params: {
-    publicationId: number;
+  publishersGet$Json(params?: {
 
-  }): Observable<PublisherDto> {
+  }): Observable<Array<PublicationBriefDto>> {
 
-    return this.publishersPublicationIdGet$Json$Response(params).pipe(
-      map((r: StrictHttpResponse<PublisherDto>) => r.body as PublisherDto)
+    return this.publishersGet$Json$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<PublicationBriefDto>>) => r.body as Array<PublicationBriefDto>)
     );
   }
 

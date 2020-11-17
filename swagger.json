@@ -72,55 +72,6 @@
         }
       }
     },
-    "/Authors/{publicationId}": {
-      "get": {
-        "tags": [
-          "Authors"
-        ],
-        "parameters": [
-          {
-            "name": "publicationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AuthorBriefDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AuthorBriefDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AuthorBriefDto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/Authors/{id}": {
       "get": {
         "tags": [
@@ -390,21 +341,10 @@
         }
       }
     },
-    "/Publishers/{publicationId}": {
+    "/Publishers": {
       "get": {
         "tags": [
           "Publishers"
-        ],
-        "parameters": [
-          {
-            "name": "publicationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
         ],
         "responses": {
           "200": {
@@ -412,25 +352,32 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublisherDto"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PublicationBriefDto"
+                  }
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublisherDto"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PublicationBriefDto"
+                  }
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PublisherDto"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PublicationBriefDto"
+                  }
                 }
               }
             }
           }
         }
-      }
-    },
-    "/Publishers": {
+      },
       "post": {
         "tags": [
           "Publishers"
@@ -562,55 +509,6 @@
         }
       }
     },
-    "/Reviews/{publicationId}": {
-      "get": {
-        "tags": [
-          "Reviews"
-        ],
-        "parameters": [
-          {
-            "name": "publicationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ReviewDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ReviewDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ReviewDto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/Reviews": {
       "post": {
         "tags": [
@@ -643,6 +541,44 @@
       }
     },
     "/Reviews/{id}": {
+      "get": {
+        "tags": [
+          "Reviews"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewDto"
+                }
+              }
+            }
+          }
+        }
+      },
       "put": {
         "tags": [
           "Reviews"

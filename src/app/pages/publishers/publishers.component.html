@@ -1,0 +1,32 @@
+<h3>Publishers <button nz-button nzType="default" (click)="selectBlankPublisher()">Create</button></h3>
+
+<nz-list nzBordered>
+  <nz-list-item *ngFor="let publisher of $publishers | async">
+    <ul nz-list-item-actions>
+      <nz-list-item-action>
+        <a (click)="selectPublisher(publisher.id!)">edit</a>
+      </nz-list-item-action>
+    </ul>
+    {{ publisher.name }}
+  </nz-list-item>
+</nz-list>
+
+<nz-modal [nzVisible]="!!selectedPublisher" nzTitle="Publisher" (nzOnCancel)="selectedPublisher=undefined">
+  <div *ngIf="selectedPublisher">
+    <input nz-input placeholder="Name" [(ngModel)]="selectedPublisher.name"/>
+    <br/>
+    <br/>
+    <textarea nz-input placeholder="Biography" [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+              [(ngModel)]="selectedPublisher.email">
+    </textarea>
+    <br/>
+    <br/>
+    <nz-select nzMode="multiple" nzPlaceHolder="Select publications" [(ngModel)]="selectedPublisher.publicationsIds">
+      <nz-option *ngFor="let publication of $publications | async" [nzLabel]="publication.title!" [nzValue]="publication.id"></nz-option>
+    </nz-select>
+  </div>
+  <div *nzModalFooter>
+        <button nz-button nzType="default" (click)="saveSelectedPublisher()">Save</button>
+        <button nz-button nzType="primary" nzDanger *ngIf="selectedPublisherId !== undefined" (click)="deleteSelectedPublisher()">Delete</button>
+  </div>
+</nz-modal>

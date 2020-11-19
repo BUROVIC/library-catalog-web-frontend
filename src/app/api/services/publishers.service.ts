@@ -8,7 +8,7 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-import { PublicationBriefDto } from '../models/publication-brief-dto';
+import { PublisherBriefDto } from '../models/publisher-brief-dto';
 import { PublisherDto } from '../models/publisher-dto';
 
 @Injectable({
@@ -35,7 +35,7 @@ export class PublishersService extends BaseService {
    */
   publishersGet$Plain$Response(params?: {
 
-  }): Observable<StrictHttpResponse<Array<PublicationBriefDto>>> {
+  }): Observable<StrictHttpResponse<Array<PublisherBriefDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, PublishersService.PublishersGetPath, 'get');
     if (params) {
@@ -48,7 +48,7 @@ export class PublishersService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<PublicationBriefDto>>;
+        return r as StrictHttpResponse<Array<PublisherBriefDto>>;
       })
     );
   }
@@ -61,10 +61,10 @@ export class PublishersService extends BaseService {
    */
   publishersGet$Plain(params?: {
 
-  }): Observable<Array<PublicationBriefDto>> {
+  }): Observable<Array<PublisherBriefDto>> {
 
     return this.publishersGet$Plain$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<PublicationBriefDto>>) => r.body as Array<PublicationBriefDto>)
+      map((r: StrictHttpResponse<Array<PublisherBriefDto>>) => r.body as Array<PublisherBriefDto>)
     );
   }
 
@@ -76,7 +76,7 @@ export class PublishersService extends BaseService {
    */
   publishersGet$Json$Response(params?: {
 
-  }): Observable<StrictHttpResponse<Array<PublicationBriefDto>>> {
+  }): Observable<StrictHttpResponse<Array<PublisherBriefDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, PublishersService.PublishersGetPath, 'get');
     if (params) {
@@ -89,7 +89,7 @@ export class PublishersService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<PublicationBriefDto>>;
+        return r as StrictHttpResponse<Array<PublisherBriefDto>>;
       })
     );
   }
@@ -102,10 +102,10 @@ export class PublishersService extends BaseService {
    */
   publishersGet$Json(params?: {
 
-  }): Observable<Array<PublicationBriefDto>> {
+  }): Observable<Array<PublisherBriefDto>> {
 
     return this.publishersGet$Json$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<PublicationBriefDto>>) => r.body as Array<PublicationBriefDto>)
+      map((r: StrictHttpResponse<Array<PublisherBriefDto>>) => r.body as Array<PublisherBriefDto>)
     );
   }
 

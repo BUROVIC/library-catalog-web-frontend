@@ -8,6 +8,7 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
+import { ReviewBriefDto } from '../models/review-brief-dto';
 import { ReviewDto } from '../models/review-dto';
 
 @Injectable({
@@ -19,6 +20,93 @@ export class ReviewsService extends BaseService {
     http: HttpClient
   ) {
     super(config, http);
+  }
+
+  /**
+   * Path part for operation reviewsGet
+   */
+  static readonly ReviewsGetPath = '/Reviews';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `reviewsGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  reviewsGet$Plain$Response(params?: {
+
+  }): Observable<StrictHttpResponse<Array<ReviewBriefDto>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ReviewsService.ReviewsGetPath, 'get');
+    if (params) {
+
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<ReviewBriefDto>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `reviewsGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  reviewsGet$Plain(params?: {
+
+  }): Observable<Array<ReviewBriefDto>> {
+
+    return this.reviewsGet$Plain$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<ReviewBriefDto>>) => r.body as Array<ReviewBriefDto>)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `reviewsGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  reviewsGet$Json$Response(params?: {
+
+  }): Observable<StrictHttpResponse<Array<ReviewBriefDto>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ReviewsService.ReviewsGetPath, 'get');
+    if (params) {
+
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<ReviewBriefDto>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `reviewsGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  reviewsGet$Json(params?: {
+
+  }): Observable<Array<ReviewBriefDto>> {
+
+    return this.reviewsGet$Json$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<ReviewBriefDto>>) => r.body as Array<ReviewBriefDto>)
+    );
   }
 
   /**

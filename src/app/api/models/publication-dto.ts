@@ -2,7 +2,7 @@
 export interface PublicationDto {
   authorsIds?: null | Array<number>;
   description?: null | string;
-  publisherId?: number;
+  publisherId?: null | number;
   reviewsIds?: null | Array<number>;
   title?: null | string;
 }

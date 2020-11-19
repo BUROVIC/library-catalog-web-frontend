@@ -16,9 +16,7 @@
     <input nz-input placeholder="Name" [(ngModel)]="selectedPublisher.name"/>
     <br/>
     <br/>
-    <textarea nz-input placeholder="Biography" [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-              [(ngModel)]="selectedPublisher.email">
-    </textarea>
+    <input nz-input placeholder="Email" [(ngModel)]="selectedPublisher.email"/>
     <br/>
     <br/>
     <nz-select nzMode="multiple" nzPlaceHolder="Select publications" [(ngModel)]="selectedPublisher.publicationsIds">
